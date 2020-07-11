@@ -20,9 +20,16 @@ app.get("/", function(req, res) {
 console.log(__dirname);
 
 // your first API endpoint...
-app.get("[project_url]/api/timestamp/:date_string?", function(req, res) {
-  res.json({ greeting: "hello API" });
-  res.json({ greeting: "hello API" });
+app.get("/api/timestamp/:date_string?", function(req, res) {
+  //res.json({ greeting: "hello API" });
+  //res.json({ greeting: "hello API" });
+  let datestring = req.params.date_string;
+  console.log(datestring);
+  if(datestring == "")
+    {
+      
+    }
+  res.json({ greeting:  });
   
 });
 
