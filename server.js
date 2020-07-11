@@ -48,8 +48,7 @@ app.get("/api/timestamp/:date_string?", function(req, res) {
   let dateObject = new Date(dateval);
   if(dateObject.toString() === "Invalid Date")
     {
-      let currdate = 
-  res.json({ unix : dateObject.valueOf(), utc : dateObject.toUTCString() });
+  res.json({ unix : new Date().valueOf(), utc : new Date().toUTCString() });
     }
   else
     {
