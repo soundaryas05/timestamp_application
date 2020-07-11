@@ -23,14 +23,29 @@ console.log(__dirname);
 app.get("/api/timestamp/:date_string?", function(req, res) {
   //res.json({ greeting: "hello API" });
   //res.json({ greeting: "hello API" });
-  let datestring = req.params.date_string;
+  let dateval = req.params.date_string;
   console.log(datestring);
-  if(datestring == "")
+  /*if(datestring == "")
     {
+      res.json({ greeting: "nothing given" });
+    }
+  else
+    {
+      res.json({ greeting: req.params.date_string });
+    }*/
+  if(isNaN(dateval))
+    {
+      var naturalDate = new Date(dateval);
+      naturalDate = naturalDate.toLocalString();
+      var unixDate = new Date(dateVal).getTime()/1000;
       
     }
-  res.json({ greeting:  });
-  
+  else
+    {
+      var unixDate = dateval;
+      var naturalDate = new Date(dateval * 1000);
+      naturalDate = naturalDate
+    }
 });
 
 // listen for requests :)
