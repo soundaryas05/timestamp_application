@@ -27,11 +27,11 @@ app.get("/api/timestamp/:date_string?", function(req, res) {
   //res.json({ greeting: "hello API" });
   let dateval = req.params.date_string;
   console.log(dateval);
-  var dateFormattingOption = {
+  /*var dateFormattingOption = {
     year : 'numeric',
     month : 'long',
     day : 'numeric'
-  }
+  }*/
   /*if(datestring == "")
     {
       res.json({ greeting: "nothing given" });
@@ -40,26 +40,22 @@ app.get("/api/timestamp/:date_string?", function(req, res) {
     {
       res.json({ greeting: req.params.date_string });
     }*/
-  if(isNaN(dateval))
+  if(/\d{5}/.test(dateval))
     {
-      var naturalDate = new Date(dateval);
-      naturalDate = naturalDate.toLocaleDateString("en-us",dateFormattingOption);
-      var unixDate = new Date(dateval).getTime()/1000;
-      
+   var  dateInt = parseInt(dateval);
+      res.json({ unix : dateval, utc : new Date(dateInt).toUTCString() });
     }
-  else if(dateval ==  ' ')
+  let dateObject = new Date(dateval);
+  if(dateObject.toString() === "Invalid Date")
     {
-      var naturalDate = new Date();
-      naturalDate = naturalDate.toLocaleDateString("en-us",dateFormattingOption);
-      var unixDate = new Date().getTime()/1000;
+      let currdate = 
+  res.json({ unix : dateObject.valueOf(), utc : dateObject.toUTCString() });
     }
   else
     {
-      var unixDate = dateval;
-      var naturalDate = new Date(dateval * 1000);
-      naturalDate = naturalDate.toLocaleDateString("en-us",dateFormattingOption);
+  res.json({ unix : dateObject.valueOf(), utc : dateObject.toUTCString() });
     }
-  res.json({ unix : unixDate, natural : naturalDate });
+
 });
 
 // listen for requests :)
