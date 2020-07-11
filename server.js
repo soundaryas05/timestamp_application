@@ -43,15 +43,21 @@ app.get("/api/timestamp/:date_string?", function(req, res) {
   if(isNaN(dateval))
     {
       var naturalDate = new Date(dateval);
-      naturalDate = naturalDate.toLocalDateString("en-us",dateFormattingOption);
+      naturalDate = naturalDate.toLocaleDateString("en-us",dateFormattingOption);
       var unixDate = new Date(dateval).getTime()/1000;
       
+    }
+  else if(dateval ==  ' ')
+    {
+      var naturalDate = new Date();
+      naturalDate = naturalDate.toLocaleDateString("en-us",dateFormattingOption);
+      var unixDate = new Date().getTime()/1000;
     }
   else
     {
       var unixDate = dateval;
       var naturalDate = new Date(dateval * 1000);
-      naturalDate = naturalDate.toLocalDateString("en-us",dateFormattingOption);
+      naturalDate = naturalDate.toLocaleDateString("en-us",dateFormattingOption);
     }
   res.json({ unix : unixDate, natural : naturalDate });
 });
