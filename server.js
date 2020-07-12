@@ -21,6 +21,12 @@ app.get("/", function(req, res) {
 });
 console.log(__dirname);
 
+app.get("/hello", function(req,res){
+  res.json({ greeting: "hello api"});
+});
+app.get("/timestamp/:date_string?", function(req,res){
+  res.json({error: "this is not correct endpoint"});
+});
 // your first API endpoint...
 app.get("/api/timestamp/:date_string?", function(req, res) {
   //res.json({ greeting: "hello API" });
